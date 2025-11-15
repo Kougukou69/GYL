@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>涵涵宝天天开心</title>
+  <style>
+    /* 页面固定，禁止滚动 */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* 固定屏幕 */
+      background-color: #fff;
+    }
+
+    /* 确认弹窗样式 */
+    .confirmPopup {
+      position: fixed;
+      width: 200px;
+      height: 150px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      background-color: #fff;
+      border: 1px solid #eee;
+      box-sizing: border-box;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* 垂直居中 */
+      align-items: center; /* 水平居中 */
+      z-index: 9998;
+    }
+
+    /* 左上角标签 */
+    .confirmPopup .label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* 居中文字（高度居中） */
+    .confirmPopup .msg {
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+      margin: 0; /* 清除默认边距，确保高度居中 */
+    }
+
+    /* 右下角蓝色按钮 */
+    .confirmPopup .confirmBtn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      padding: 6px 16px;
+      background-color: #409EFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* 原有弹窗容器（初始隐藏） */
+    #popupContainer {
+      display: none;
+    }
+
+    /* 原有弹窗样式（保持不变） */
+    .popup {
+      position: fixed;
+      width: 90px;
+      height: 45px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      padding: 5px;
+      background-color: #f8eef8;
+      border: 1px solid #f0d0f0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.5);
+      animation: popIn 0.5s forwards;
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.5); }
+      70% { opacity: 1; transform: scale(1.1); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .popup::after {
+      content: "";
+      width: 100%;
+      height: 1px;
+      background: #e0c0e0;
+      margin: 2px 0;
+      display: block;
+    }
+
+    .popup .label {
+      font-size: 8px;
+      color: #d080d0;
+      margin-bottom: 1px;
+    }
+
+    .popup .msg {
+      font-size: 10px;
+      color: #663366;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- 确认弹窗（页面加载后直接显示） -->
+  <div class="confirmPopup">
+    <div class="label">涵涵宝天天开心</div>
+    <div class="msg">有一份礼物，确认打开吗？</div>
+    <button class="confirmBtn" id="confirmBtn">确认</button>
+  </div>
+
+  <!-- 原有弹窗容器 -->
+  <div id="popupContainer"></div>
+
+  <script>
+    // 确认按钮点击事件（点击后运行原有代码）
+    document.getElementById('confirmBtn').addEventListener('click', function() {
+      document.querySelector('.confirmPopup').style.display = 'none';
+      document.getElementById('popupContainer').style.display = 'block';
+
+      // 以下是你原有弹窗的逻辑（直接复制你的代码）
+      const messages = [
+       "涵涵你值得被深爱",
+"涵涵你要一直自信呀",
+"涵涵你每天活力满满",
+"涵涵你善良的你最美",
+"涵涵你保持热爱前行",
+"涵涵你多夸夸自己哦",
+"涵涵你笑容治愈一切",
+"涵涵你努力的你超闪",
+"涵涵你别吝啬夸奖哦",
+"涵涵你本就很优秀",
+"涵涵你尝试发现可能",
+"涵涵你真诚是必杀技",
+"涵涵你大胆追想要的",
+"涵涵你热爱感染生活",
+"涵涵你保持这份善良",
+"涵涵你坚持终会结果",
+"涵涵你别忘你多优秀",
+"涵涵你给自己点时间",
+"涵涵你善意温暖他人",
+"涵涵你做独一无二的",
+"涵涵你要多爱自己",
+"涵涵你自信的你最酷",
+"涵涵你勇敢奔赴热爱",
+"涵涵你你的光很耀眼",
+"涵涵你未来充满期待",
+"涵涵你好好享受生活",
+"涵涵你你是限量版哦",
+"涵涵你别否定你自己",
+"涵涵你大胆去尝试吧",
+"涵涵你你值得所有好",
+"涵涵你平安喜乐",
+"涵涵你好运常伴左右",
+"涵涵你努力终有回响",
+"涵涵你记得穿衣保暖",
+"涵涵你天天开心快乐",
+"涵涵你星光为你闪耀",
+"涵涵你温柔住进心里",
+"涵涵你勇敢冲破迷茫",
+"涵涵你快乐如期而至",
+"涵涵你笑容点亮日常",
+"涵涵你善意终有回应",
+"涵涵你梦想照亮前路",
+"涵涵你你超值得期待",
+"涵涵你自信闪耀全场",
+"涵涵你热爱不负时光",
+"涵涵你温暖常伴身旁",
+"涵涵你勇敢做你自己",
+"涵涵你美好如期而至",
+"涵涵你你是人间星光",
+"涵涵你热爱可抵岁月"
+      ];
+      const heartPositions = [
+        { left: "42%", top: "32%" },
+        { left: "48%", top: "29%" },
+        { left: "53%", top: "26%" },
+        { left: "58%", top: "23%" },
+        { left: "63%", top: "20%" },
+        { left: "68%", top: "17%" },
+        { left: "73%", top: "20%" },
+        { left: "78%", top: "23%" },
+        { left: "83%", top: "26%" },
+        { left: "88%", top: "29%" },
+        { left: "83%", top: "32%" },
+        { left: "78%", top: "35%" },
+        { left: "73%", top: "38%" },
+        { left: "68%", top: "41%" },
+        { left: "63%", top: "44%" },
+        { left: "58%", top: "47%" },
+        { left: "53%", top: "50%" },
+        { left: "48%", top: "53%" },
+        { left: "43%", top: "56%" },
+        { left: "38%", top: "53%" },
+        { left: "33%", top: "50%" },
+        { left: "28%", top: "47%" },
+        { left: "23%", top: "44%" },
+        { left: "18%", top: "41%" },
+        { left: "13%", top: "38%" },
+        { left: "8%", top: "35%" },
+        { left: "3%", top: "32%" },
+        { left: "3%", top: "29%" }, 
+        { left: "3%", top: "26%" },
+        { left: "8%", top: "23%" },
+        { left: "13%", top: "20%" },
+        { left: "18%", top: "17%" }, 
+        { left: "23%", top: "20%" },
+        { left: "28%", top: "23%" },
+        { left: "33%", top: "26%" },
+        { left: "38%", top: "29%" },
+      ];
+
+      heartPositions.forEach((pos, index) => {
+        const popup = document.createElement("div");
+        popup.className = "popup";
+        popup.style.left = pos.left;
+        popup.style.top = pos.top;
+        popup.style.animationDelay = `${index * 0.20}s`;
+        popup.innerHTML = `
+          <div class="label">💝 提示</div>
+          <div class="msg">${messages[index]}</div>
+        `;
+        document.getElementById('popupContainer').appendChild(popup);
+      });
+    });
+  </script>
+</body>
+</html>
